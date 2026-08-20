@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,body,#root{
+  height:100%;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  font-family: 'Sora', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: #0A0A14; /* Vapor Clinic primary */
+  color: #F0EFF4;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7B61FF, #9B8FFF);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #9B8FFF, #7B61FF);
+}
+
+/* Global noise overlay */
+.noise {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  mix-blend-mode: overlay;
+  opacity: 0.05;
+  z-index: 60;
+}
+
+.rounded-giant { border-radius: 2rem }
+
+.magnetic-btn{ transition: transform .18s cubic-bezier(.25,.46,.45,.94), box-shadow .18s; }
+.magnetic-btn:hover{ transform: scale(1.03) }
+
+/* Sliding background layer for buttons */
+.btn-slide{ position: relative; overflow: hidden; display: inline-block }
+.btn-slide > span.bg{ position: absolute; left: -120%; top: 0; bottom: 0; width: 220%; transform: skewX(-12deg); transition: transform .45s cubic-bezier(.25,.46,.45,.94); }
+.btn-slide:hover > span.bg{ transform: translateX(30%) }
+.btn-slide > span.content{ position: relative; z-index: 2 }
+
+/* subtle blur utility for stacked cards */
+.stack-blur{ filter: blur(0px); transition: filter .3s, opacity .3s, transform .3s }
+
+@keyframes glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 15px rgba(123, 97, 255, 0.4)) }
+  50% { filter: drop-shadow(0 0 35px rgba(123, 97, 255, 0.8)) }
+}
+
+.plasma-glow {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to { transform: rotate(360deg) }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(123, 97, 255, 0.3);
+  color: #F0EFF4;
+}
+
+/* Focus outline for accessibility */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid #7B61FF;
+  outline-offset: 2px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .rounded-giant { border-radius: 1.5rem }
+}
